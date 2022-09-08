@@ -1,12 +1,14 @@
 ﻿using AutoMapper;
 
-namespace Artsoft.Web.AppConfigs
+using Artsoft.DataAccess.Mappings;
+
+namespace Artsoft.DataAccess
 {
     public static class MappingConfig
     {
         public static void Config(IMapperConfigurationExpression config)
         {
-            BusinessLogic.MappingConfig.Config(config);
+            ProgrammingLanguageMapping.Mapping(config);
         }
     }
 }

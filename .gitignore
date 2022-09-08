@@ -17,6 +17,9 @@ project.lock.json
 
 *.dbmdl 
 *.jfm
+*.pubxml
+
+*.Production.json
 
 # Build results
 [Dd]ebug/

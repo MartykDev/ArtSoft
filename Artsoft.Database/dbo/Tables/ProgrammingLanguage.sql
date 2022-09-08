@@ -1,4 +1,7 @@
 ﻿CREATE TABLE [dbo].[ProgrammingLanguage]
 (
-	[Id] INT NOT NULL PRIMARY KEY
+	[Id]	    UNIQUEIDENTIFIER	NOT NULL,
+	[Name]		NVARCHAR(800)		NOT NULL,
+
+	CONSTRAINT [PK_ProgrammingLanguage] PRIMARY KEY ([Id])
 )
