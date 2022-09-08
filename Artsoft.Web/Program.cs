@@ -1,4 +1,6 @@
+using Artsoft.Web.AppConfigs;
 using Artsoft.Web.Data;
+using Common.Mapper;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 
@@ -14,6 +16,8 @@ namespace Artsoft.Web
             builder.Services.AddRazorPages();
             builder.Services.AddServerSideBlazor();
             builder.Services.AddSingleton<WeatherForecastService>();
+
+            builder.Services.AddMapping(MappingConfig.Config);
 
             var app = builder.Build();
 
