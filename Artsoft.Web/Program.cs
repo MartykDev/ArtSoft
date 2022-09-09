@@ -1,13 +1,8 @@
 using Common.Data;
 using Common.Mapper;
 
-using Artsoft.Web.Data;
 using Artsoft.Web.Constants;
-using Artsoft.Web.AppConfigs;
-using Artsoft.BusinessLogic.Services;
-using Artsoft.DataAccess.Repositories;
-using Artsoft.BusinessLogic.Services.Interfaces;
-using Artsoft.DataAccess.Repositories.Interfaces;
+using Artsoft.BusinessLogic;
 
 namespace Artsoft.Web
 {
@@ -17,15 +12,12 @@ namespace Artsoft.Web
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.AddDatabaseClient(DatabaseConnections.MasterConnectionString);
-
-            builder.Services.AddScoped<IProgrammingLanguageRepository, ProgrammingLanguageRepository>();
-            builder.Services.AddScoped<IProgrammingLanguageService, ProgrammingLanguageService>();
+            builder.Services.AddDatabaseClient(DatabaseConnection.MasterConnectionString);
+            builder.Services.ConfigureBusinessLogicServices();
 
             builder.Services.AddRazorPages();
             builder.Services.AddServerSideBlazor();
-            builder.Services.AddSingleton<WeatherForecastService>();
-            builder.Services.AddMapping(MappingConfig.Config);
+            builder.Services.AddMapping(AppConfigs.MappingConfig.Config);
 
             var app = builder.Build();
 

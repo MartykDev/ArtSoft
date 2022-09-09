@@ -1,6 +1,9 @@
-﻿using AutoMapper;
+﻿using Artsoft.DataAccess.Models.Entities;
+using AutoMapper;
 
 using Common.Mapper.Extensions;
+
+using DaModels = Artsoft.DataAccess.Models;
 
 namespace Artsoft.DataAccess.Mappings
 {
@@ -8,7 +11,7 @@ namespace Artsoft.DataAccess.Mappings
     {
         public static void Mapping(IMapperConfigurationExpression config)
         {
-            config.CreateDataReaderMap<Models.ProgrammingLanguage>();
+            config.CreateDataReaderMap<ProgrammingLanguage>();
         }
     }
 }

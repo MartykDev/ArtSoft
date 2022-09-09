@@ -1,7 +1,9 @@
 ﻿using Common.Data.Interfaces;
 
-using Artsoft.DataAccess.Models;
 using Artsoft.DataAccess.Repositories.Interfaces;
+
+using DaModels = Artsoft.DataAccess.Models;
+using Artsoft.DataAccess.Models.Entities;
 
 namespace Artsoft.DataAccess.Repositories
 {

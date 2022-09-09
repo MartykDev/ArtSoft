@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DaModels = Artsoft.DataAccess.Models.Entities;
 
 namespace Artsoft.DataAccess.Repositories.Interfaces
 {
-    internal interface IEmployeeRepository
+    public interface IEmployeeRepository
     {
+        Task<IEnumerable<DaModels.Employee>> GetAllAsync(CancellationToken cancellationToken);
     }
 }

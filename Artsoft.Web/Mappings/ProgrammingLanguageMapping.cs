@@ -1,15 +1,15 @@
 ﻿using AutoMapper;
 
+using WebModels = Artsoft.Web.Models;
 using BlModels = Artsoft.BusinessLogic.Models;
-using DaModels = Artsoft.DataAccess.Models.Entities;
 
-namespace Artsoft.BusinessLogic.Mappings
+namespace Artsoft.Web.Mappings
 {
     public static class ProgrammingLanguageMapping
     {
         public static void Mapping(IMapperConfigurationExpression config)
         {
-            config.CreateMap<DaModels.ProgrammingLanguage, BlModels.ProgrammingLanguage>();
+            config.CreateMap<BlModels.ProgrammingLanguage, WebModels.ProgrammingLanguage>();
         }
     }
 }

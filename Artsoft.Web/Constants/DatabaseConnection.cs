@@ -1,6 +1,6 @@
 ﻿namespace Artsoft.Web.Constants
 {
-    public static class DatabaseConnections
+    public static class DatabaseConnection
     {
         public static string MasterConnectionString => nameof(MasterConnectionString);
     }

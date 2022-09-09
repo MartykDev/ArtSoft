@@ -8,6 +8,7 @@ namespace Artsoft.DataAccess
     {
         public static void Config(IMapperConfigurationExpression config)
         {
+            EmployeeMapping.Mapping(config);
             ProgrammingLanguageMapping.Mapping(config);
         }
     }
