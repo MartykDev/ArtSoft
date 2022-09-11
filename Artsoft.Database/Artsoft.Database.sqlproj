@@ -57,8 +57,9 @@
   <ItemGroup>
     <Folder Include="Properties" />
     <Folder Include="dbo" />
-    <Folder Include="dbo\Tables" />
     <Folder Include="Scripts" />
+    <Folder Include="dbo\Views" />
+    <Folder Include="dbo\Tables" />
     <Folder Include="dbo\Stored Procedures" />
     <Folder Include="dbo\User Defined Types" />
   </ItemGroup>
@@ -71,6 +72,9 @@
     <Build Include="dbo\Stored Procedures\spSelectAllDepartments.sql" />
     <Build Include="dbo\Stored Procedures\spMergeEmployees.sql" />
     <Build Include="dbo\User Defined Types\udtEmployee.sql" />
+    <Build Include="dbo\Stored Procedures\spDeleteEmployee.sql" />
+    <Build Include="dbo\Stored Procedures\spSelectByIdEmployee.sql" />
+    <Build Include="dbo\Views\vEmployee.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\PostDeployment.sql" />

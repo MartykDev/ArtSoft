@@ -12,36 +12,25 @@ namespace Artsoft.Web.Pages.Employee
 {
     public partial class EmployeeAdd : ArtsoftComponentBase
     {
-        #region Services
+        #region Injections
 
+        [Inject] public NavigationManager NavigationManager { get; set; }
         [Inject] public IEmployeeService EmployeeService { get; set; }
-        [Inject] public IDepartmentService DepartmentService { get; set; }
-        [Inject] public IProgrammingLanguageService ProgrammingLanguageService { get; set; }
 
         #endregion
 
         public WebModel.EmployeeModifyInput EmployeeModifyInput { get; set; }
-        public IReadOnlyCollection<WebModel.Department> Departments { get; set; }
-        public IReadOnlyCollection<WebModel.ProgrammingLanguage> ProgrammingLanguages { get; set; }
 
-        protected override async Task OnInitializedAsync()
+        protected override void OnInitialized()
         {
             EmployeeModifyInput = new();
-
-            var departmentsTask = DepartmentService.GetAllAsync(CancellationToken);
-            var programmingLanguagesTask = ProgrammingLanguageService.GetAllAsync(CancellationToken);
-
-            await Task.WhenAll(departmentsTask, programmingLanguagesTask);
-
-            Departments = departmentsTask.Result.MapRangeTo<WebModel.Department>().ToList();
-            ProgrammingLanguages = programmingLanguagesTask.Result.MapRangeTo<WebModel.ProgrammingLanguage>().ToList();
-
             Initialized = true;
         }
 
-        public async Task ModifyEmployeeAsync()
+        public async Task AddEmployeeAsync()
         {
             await EmployeeService.CreateAsync(EmployeeModifyInput.MapTo<BlCommands.EmployeeModifyCommand>(), CancellationToken);
+            NavigationManager.NavigateTo("/");
         }
     }
 }

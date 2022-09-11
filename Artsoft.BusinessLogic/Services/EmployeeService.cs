@@ -35,15 +35,11 @@ namespace Artsoft.BusinessLogic.Services
             await employeeRepository.MergeAsync(daMergeCommand, cancellationToken);
         }
 
-        public Task DeleteAsync(Guid employeeId, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task DeleteAsync(Guid employeeId, CancellationToken cancellationToken)
+            => await employeeRepository.DeleteAsync(employeeId, cancellationToken);
 
-        public Task<BlModels.Employee> GetByIdAsync(Guid employeeId, CancellationToken cancellationToken)
-        {
-            throw new NotImplementedException();
-        }
+        public async Task<BlModels.Employee> GetByIdAsync(Guid employeeId, CancellationToken cancellationToken)
+            => (await employeeRepository.GetByIdAsync(employeeId, cancellationToken)).MapTo<BlModels.Employee>();
 
         public async Task<IEnumerable<string>> GetNamesAsync(string term, CancellationToken cancellationToken)
            => throw new NotImplementedException();

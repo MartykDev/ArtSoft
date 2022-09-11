@@ -1,0 +1,18 @@
+﻿@page "/edit/{EmployeeStringId}"
+
+@using Artsoft.Web.Components
+
+@inherits ArtsoftComponentBase
+
+<PageTitle>Employee data changes</PageTitle>
+
+@if (!Initialized)
+{
+   <Loader />
+}
+else
+{
+    <h4 class="text-center">Employee data changes</h4>
+
+    <EmployeeModifyForm EmployeeModifyInput=@(EmployeeModifyInput) ModifyActionAsync="async () => await EditEmployeeAsync()" SubmitButtonText="Edit" />
+}

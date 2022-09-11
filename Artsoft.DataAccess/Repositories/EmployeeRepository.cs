@@ -15,6 +15,8 @@ namespace Artsoft.DataAccess.Repositories
         #region SpNames
 
         private const string mergeEmployeesSpName = "spMergeEmployees";
+        private const string deleteEmployeeSpName = "spDeleteEmployee";
+        private const string selectByIdEmployeeSpName = "spSelectByIdEmployee";
         private const string selectAllEmployeesSpName = "spSelectAllEmployees";
 
         #endregion
@@ -24,15 +26,26 @@ namespace Artsoft.DataAccess.Repositories
         public EmployeeRepository(IDatabaseClient databaseClient)
             => this.databaseClient = databaseClient;
 
-        public async Task<IEnumerable<DaModels.Employee>> GetAllAsync(CancellationToken cancellationToken)
-            => await databaseClient.ExecuteStoredProcedureAsync<DaModels.Employee>(
-                selectAllEmployeesSpName, cancellationToken: cancellationToken);
-
         public async Task MergeAsync(DaCommands.EmployeeModifyCommand employeeModifyCommand, CancellationToken cancellationToken)
             => await databaseClient.ExecuteStoredProcedureAsync(
-                mergeEmployeesSpName, GetSqlParameters(new[] { employeeModifyCommand }), 
+                mergeEmployeesSpName, GetSqlParameters(new[] { employeeModifyCommand }),
                 cancellationToken);
-        
+
+        public async Task<IEnumerable<DaModels.Employee>> GetAllAsync(CancellationToken cancellationToken)
+            => await databaseClient.ExecuteStoredProcedureAsync<DaModels.Employee>(
+               selectAllEmployeesSpName, cancellationToken: cancellationToken);
+
+        public async Task<DaModels.Employee> GetByIdAsync(Guid employeeId, CancellationToken cancellationToken)
+            => (await databaseClient.ExecuteStoredProcedureAsync<DaModels.Employee>(
+                selectByIdEmployeeSpName, new[] { new SqlParameter("@employeeId", employeeId) }, 
+                cancellationToken: cancellationToken)).FirstOrDefault();
+
+        public async Task DeleteAsync(Guid employeeId, CancellationToken cancellationToken)
+            => await databaseClient.ExecuteStoredProcedureAsync(
+                deleteEmployeeSpName, new[] { new SqlParameter("@employeeId", employeeId) }, 
+                cancellationToken: cancellationToken);
+
+
         #region Private
 
         private IEnumerable<SqlParameter> GetSqlParameters(IEnumerable<DaCommands.EmployeeModifyCommand> commands)

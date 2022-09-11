@@ -11,5 +11,7 @@ namespace Artsoft.Web.Models
         public string Gender { get; set; }
         public string DepartmentName { get; set; }
         public string ProgrammingLanguageName { get; set; }
+
+        public string FullName => $"{Name} {Surname}";
     }
 }

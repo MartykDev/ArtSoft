@@ -9,7 +9,7 @@ namespace Artsoft.BusinessLogic.Models
         public string Surname { get; set; }
         public int Age { get; set; }
         public Gender Gender { get; set; }
-        public string DepartmentName { get; set; }
-        public string ProgrammingLanguageName { get; set; }
+        public Department Department { get; set; }
+        public ProgrammingLanguage ProgrammingLanguage { get; set; }
     }
 }
