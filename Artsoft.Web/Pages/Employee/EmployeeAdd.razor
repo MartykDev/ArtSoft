@@ -7,17 +7,78 @@
 <PageTitle>Create New Employee</PageTitle>
 
 
-@if (ProgrammingLanguages == null)
+@if (!Initialized)
 {
-    <p><em>Loading...</em></p>
+    <div class="text-center">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
 }
 else
 {
-    <ul class="list-group">
-        @foreach (var item in ProgrammingLanguages)
-        {
-            <li class="list-group-item">@item.Name</li>
-        }
-    </ul>
+    <div class="container-md" style="max-width: 500px;">
+        <EditForm Model="EmployeeModifyInput" OnValidSubmit="ModifyEmployeeAsync">
+            <DataAnnotationsValidator />
 
+            <div class="mb-3">
+                <label for="inputName" class="form-label">Name</label>
+                <InputText @bind-Value="EmployeeModifyInput.Name" class="form-control" id="inputName" />
+                <ValidationMessage For="@(() => EmployeeModifyInput.Name)" class="text-danger" />
+            </div>
+
+            <div class="mb-3">
+                <label for="inputSurname" class="form-label">Surname</label>
+                <InputText @bind-Value="EmployeeModifyInput.Surname" class="form-control" id="inputSurname" />
+                <ValidationMessage For="@(() => EmployeeModifyInput.Surname)" class="text-danger" />
+            </div>
+
+            <div class="mb-3">
+                <label for="inputAge" class="form-label">Age</label>
+                <InputNumber @bind-Value="EmployeeModifyInput.Age" class="form-control" id="inputAge" />
+                <ValidationMessage For="@(() => EmployeeModifyInput.Age)" class="text-danger" />
+            </div>
+
+            <div class="mb-3">
+                <label for="inputGen" class="form-label">Gender</label>
+                <InputSelect @bind-Value="EmployeeModifyInput.Gender" class="form-select" id="inputGen">
+                    <option selected>Choose a gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </InputSelect>
+                <ValidationMessage For="@(() => EmployeeModifyInput.Gender)" class="text-danger" />
+            </div>
+
+            <div class="mb-3">
+                <label for="inputDep" class="form-label">Department</label>
+                <InputSelect @bind-Value="EmployeeModifyInput.DepartmentId" class="form-select" id="inputDep">
+                    <option selected>Choose a department</option>
+                    @foreach (var item in Departments)
+                    {
+                        <option value=@item.Id>@item.Name</option>
+                    }
+                </InputSelect>
+                <ValidationMessage For="@(() => EmployeeModifyInput.DepartmentId)" class="text-danger" />
+            </div>
+
+            <div class="mb-3">
+                <label for="inputPl" class="form-label">Programming Language</label>
+                <InputSelect @bind-Value="EmployeeModifyInput.ProgrammingLanguageId" class="form-select" id="inputPl">
+                    <option selected di>Choose a programming language</option>
+                    @foreach (var item in ProgrammingLanguages)
+                    {
+                        <option value=@item.Id>@item.Name</option>
+                    }
+                </InputSelect>
+                <ValidationMessage For="@(() => EmployeeModifyInput.ProgrammingLanguageId)" class="text-danger" />
+            </div>
+
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-outline-dark m-2">Add</button>
+                <div class="p-2">
+                    <a class="btn btn-secondary d-block" href="">Cancel</a>
+                </div>
+            </div>
+        </EditForm>
+    </div>
 }

@@ -4,6 +4,8 @@ using Artsoft.BusinessLogic.Enums;
 
 using BlModels = Artsoft.BusinessLogic.Models;
 using DaModels = Artsoft.DataAccess.Models.Entities;
+using DaCommands = Artsoft.DataAccess.Models.Commands;
+using BlCommands = Artsoft.BusinessLogic.Models.Commands;
 
 namespace Artsoft.BusinessLogic.Mappings
 {
@@ -16,6 +18,8 @@ namespace Artsoft.BusinessLogic.Mappings
                   .ForMember(bl => bl.DepartmentName, opt => opt.MapFrom(da => da.Department.Name))
                   .ForMember(bl => bl.ProgrammingLanguageName, opt => opt.MapFrom(da => da.ProgrammingLanguage.Name));
 
+            config.CreateMap<BlCommands.EmployeeModifyCommand, DaCommands.EmployeeModifyCommand>()
+                  .ForMember(bl => bl.Gender, opt => opt.MapFrom(da => (int)da.Gender));
         }
     }
 }

@@ -2,8 +2,7 @@
 
 using Artsoft.DataAccess.Repositories.Interfaces;
 
-using DaModels = Artsoft.DataAccess.Models;
-using Artsoft.DataAccess.Models.Entities;
+using DaModels = Artsoft.DataAccess.Models.Entities;
 
 namespace Artsoft.DataAccess.Repositories
 {
@@ -16,8 +15,8 @@ namespace Artsoft.DataAccess.Repositories
         public ProgrammingLanguageRepository(IDatabaseClient databaseClient)
             => this.databaseClient = databaseClient;
 
-        public async Task<IEnumerable<ProgrammingLanguage>> GetAllAsync(CancellationToken cancellationToken)
-            => await databaseClient.ExecuteStoredProcedureAsync<ProgrammingLanguage>(
+        public async Task<IEnumerable<DaModels.ProgrammingLanguage>> GetAllAsync(CancellationToken cancellationToken)
+            => await databaseClient.ExecuteStoredProcedureAsync<DaModels.ProgrammingLanguage>(
                 selectAllProgrammingLanguagesSpName, cancellationToken: cancellationToken);
     }
 }

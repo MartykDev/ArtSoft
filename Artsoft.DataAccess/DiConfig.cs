@@ -9,8 +9,9 @@ namespace Artsoft.DataAccess
     {
         public static IServiceCollection ConfigureDataAccessRepositories(this IServiceCollection services)
         {
-            services.AddScoped<IProgrammingLanguageRepository, ProgrammingLanguageRepository>();
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+            services.AddScoped<IProgrammingLanguageRepository, ProgrammingLanguageRepository>();
 
             return services;
         }

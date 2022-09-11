@@ -60,6 +60,7 @@
     <Folder Include="dbo\Tables" />
     <Folder Include="Scripts" />
     <Folder Include="dbo\Stored Procedures" />
+    <Folder Include="dbo\User Defined Types" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\Employee.sql" />
@@ -67,6 +68,9 @@
     <Build Include="dbo\Tables\ProgrammingLanguage.sql" />
     <Build Include="dbo\Stored Procedures\spSelectAllProgrammingLanguages.sql" />
     <Build Include="dbo\Stored Procedures\spSelectAllEmployees.sql" />
+    <Build Include="dbo\Stored Procedures\spSelectAllDepartments.sql" />
+    <Build Include="dbo\Stored Procedures\spMergeEmployees.sql" />
+    <Build Include="dbo\User Defined Types\udtEmployee.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\PostDeployment.sql" />

@@ -9,6 +9,7 @@ namespace Artsoft.BusinessLogic
         public static void Config(IMapperConfigurationExpression config)
         {
             EmployeeMapping.Mapping(config);
+            DepartmentMapping.Mapping(config);
             ProgrammingLanguageMapping.Mapping(config);
 
             DataAccess.MappingConfig.Config(config);

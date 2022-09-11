@@ -5,7 +5,7 @@ USING (VALUES
 	,(NEWID(), 'Desktop', 3)
 	,(NEWID(), 'Embedded', 4)
 	) AS SOURCE ([Id], [Name], [Floor])
-ON SOURCE.[Id] = TARGET.[Id]
+ON SOURCE.[Name] = TARGET.[Name]
 WHEN NOT MATCHED THEN
 	INSERT ([Id], [Name], [Floor]) 
 	VALUES (SOURCE.[Id], SOURCE.[Name], SOURCE.[Floor])

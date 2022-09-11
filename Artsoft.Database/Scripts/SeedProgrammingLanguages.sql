@@ -7,7 +7,7 @@ USING (VALUES
 	,(NEWID(), 'C++')
 	,(NEWID(), 'F#')
 	) AS SOURCE ([Id], [Name])
-ON SOURCE.[Id] = TARGET.[Id]
+ON SOURCE.[Name] = TARGET.[Name]
 WHEN NOT MATCHED THEN
 	INSERT ([Id], [Name]) 
 	VALUES (SOURCE.[Id], SOURCE.[Name])

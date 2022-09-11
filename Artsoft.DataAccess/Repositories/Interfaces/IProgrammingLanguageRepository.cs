@@ -1,10 +1,9 @@
-﻿using Artsoft.DataAccess.Models.Entities;
-using DaModels = Artsoft.DataAccess.Models;
+﻿using DaModels = Artsoft.DataAccess.Models.Entities;
 
 namespace Artsoft.DataAccess.Repositories.Interfaces
 {
     public interface IProgrammingLanguageRepository
     {
-        Task<IEnumerable<ProgrammingLanguage>> GetAllAsync(CancellationToken cancellationToken);
+        Task<IEnumerable<DaModels.ProgrammingLanguage>> GetAllAsync(CancellationToken cancellationToken);
     }
 }

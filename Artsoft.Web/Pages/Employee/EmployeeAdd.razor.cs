@@ -6,6 +6,7 @@ using Artsoft.Web.Components;
 using Artsoft.BusinessLogic.Services.Interfaces;
 
 using WebModel = Artsoft.Web.Models;
+using BlCommands = Artsoft.BusinessLogic.Models.Commands;
 
 namespace Artsoft.Web.Pages.Employee
 {
@@ -27,13 +28,20 @@ namespace Artsoft.Web.Pages.Employee
         {
             EmployeeModifyInput = new();
 
-            //Departments = (await DepartmentService.GetAllAsync(CancellationToken))
-            //               .MapRangeTo<WebModel.Department>()
-            //               .ToList();
+            var departmentsTask = DepartmentService.GetAllAsync(CancellationToken);
+            var programmingLanguagesTask = ProgrammingLanguageService.GetAllAsync(CancellationToken);
 
-            ProgrammingLanguages = (await ProgrammingLanguageService.GetAllAsync(CancellationToken))
-                                    .MapRangeTo<WebModel.ProgrammingLanguage>()
-                                    .ToList();
+            await Task.WhenAll(departmentsTask, programmingLanguagesTask);
+
+            Departments = departmentsTask.Result.MapRangeTo<WebModel.Department>().ToList();
+            ProgrammingLanguages = programmingLanguagesTask.Result.MapRangeTo<WebModel.ProgrammingLanguage>().ToList();
+
+            Initialized = true;
+        }
+
+        public async Task ModifyEmployeeAsync()
+        {
+            await EmployeeService.CreateAsync(EmployeeModifyInput.MapTo<BlCommands.EmployeeModifyCommand>(), CancellationToken);
         }
     }
 }
