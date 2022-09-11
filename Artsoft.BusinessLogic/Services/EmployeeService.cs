@@ -42,6 +42,6 @@ namespace Artsoft.BusinessLogic.Services
             => (await employeeRepository.GetByIdAsync(employeeId, cancellationToken)).MapTo<BlModels.Employee>();
 
         public async Task<IEnumerable<string>> GetNamesAsync(string term, CancellationToken cancellationToken)
-           => throw new NotImplementedException();
+           => await employeeRepository.GetNamesAsync(term, cancellationToken);
     }
 }

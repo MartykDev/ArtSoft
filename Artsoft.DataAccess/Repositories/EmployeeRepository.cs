@@ -7,6 +7,7 @@ using Artsoft.DataAccess.Repositories.Interfaces;
 
 using DaModels = Artsoft.DataAccess.Models.Entities;
 using DaCommands = Artsoft.DataAccess.Models.Commands;
+using Artsoft.DataAccess.Models.Entities;
 
 namespace Artsoft.DataAccess.Repositories
 {
@@ -18,6 +19,7 @@ namespace Artsoft.DataAccess.Repositories
         private const string deleteEmployeeSpName = "spDeleteEmployee";
         private const string selectByIdEmployeeSpName = "spSelectByIdEmployee";
         private const string selectAllEmployeesSpName = "spSelectAllEmployees";
+        private const string selectExistingEmployeeNamesSpName = "spSelectExistingEmployeeNames";
 
         #endregion
 
@@ -44,6 +46,10 @@ namespace Artsoft.DataAccess.Repositories
             => await databaseClient.ExecuteStoredProcedureAsync(
                 deleteEmployeeSpName, new[] { new SqlParameter("@employeeId", employeeId) }, 
                 cancellationToken: cancellationToken);
+
+        public async Task<IEnumerable<string>> GetNamesAsync(string term, CancellationToken cancellationToken)
+            => await databaseClient.ExecuteStoredProcedureAsync<string>(
+                selectExistingEmployeeNamesSpName, new[] { new SqlParameter("@term", term) }, cancellationToken: cancellationToken);
 
 
         #region Private

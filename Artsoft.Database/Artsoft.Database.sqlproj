@@ -75,6 +75,7 @@
     <Build Include="dbo\Stored Procedures\spDeleteEmployee.sql" />
     <Build Include="dbo\Stored Procedures\spSelectByIdEmployee.sql" />
     <Build Include="dbo\Views\vEmployee.sql" />
+    <Build Include="dbo\Stored Procedures\spSelectExistingEmployeeNames.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\PostDeployment.sql" />
